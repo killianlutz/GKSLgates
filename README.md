@@ -2,7 +2,9 @@
 This code, written in [Julia](https://julialang.org/), is provided to reproduce some of the figures in [this](https://hal.science/hal-05176524) paper, namely Figures 3, 4, 7 and Table 2.
 
 ## Content
-The code attempts to solve for the minimal time needed to implement a quantum gate on noisy qudits of arbitrary dimension in the GKSL framework subject to a constrained coherent control. The numerical method is based on a continuation method is combined with gradient descent and a line-search of the step size. 
+The code attempts to solve for the minimal time needed to implement a quantum gate on noisy qudits of arbitrary dimension in the GKSL framework subject to a constrained coherent control. 
+
+The numerical method is based on an indirect discretisation with gradient descent and line-search of the step size, combined with a continuation method on the parameter that penalises the gate time in the objective function.
 
 ## Getting started 
 Open the terminal and run
