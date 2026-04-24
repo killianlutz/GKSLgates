@@ -107,12 +107,14 @@ function verifybounds(var, sap, bounds; dtmax=1e-3)
     J = sum(abs2, results.sol.u[end] - var.vecQ)/2
     T = var.T
 
-    isJ = (Jlow < J) * (J <= Jup)
-    isT = (Tlow < T) * (T <= Tup)
+    isJ_within_bounds = (Jlow < J) * (J <= Jup)
+    isT_within_bounds = (Tlow < T) * (T <= Tup)
 
     @show Jup J Jlow
+    @show isJ_within_bounds 
     @show Tup T Tlow 
-    return (; isJ, isT)
+    @show isT_within_bounds
+    return (; J, T)
 end
 
 function ψ(x, d)

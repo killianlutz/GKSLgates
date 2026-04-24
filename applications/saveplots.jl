@@ -1,13 +1,14 @@
 using Pkg
 Pkg.activate("./")
-include("../src/modules/QGateDescent.jl")
+include("../src/QGateDescent.jl")
 using .QGateDescent
 using Random: default_rng, seed!
 import .QGateDescent as qgd
 
 using JLD2: @load
+using DataFrames: DataFrame
+using CSV
 using CairoMakie
-CairoMakie.activate!()
 
 begin
     save_dir = "./applications/sims/"
@@ -15,7 +16,7 @@ begin
 end
 
 foreach(models) do model
-    save_dir = "./scripts/applications/sims/"*model*"/"
+    save_dir = "./applications/sims/"*model*"/"
     filename = save_dir*model*".jld2"
     @load filename var sap qs Tη
 
@@ -38,6 +39,25 @@ foreach(models) do model
         push!(figs, showbloch_orbits(var, sap, qs, ϱ0; with_ctrl=true))
     end
 
+    # compare estimates to numerical results
+    if qs.dim == 2
+        nexp_Hgen = nothing
+    else
+        nexp_Hgen = 3 # the gate we chose is known to be H_3-generated
+    end
+    bounds = aprioribounds!(var, qs; nexp_Hgen);
+    J_val, T_val = verifybounds(var, sap, bounds); # validate with independent solver
+    results = DataFrame(
+        J_upper=bounds.Jup, 
+        J_validated=J_val, 
+        J_lower=bounds.Jlow, 
+        T_upper=bounds.Tup, 
+        T_validated=T_val, 
+        T_lower=bounds.Tlow
+        )
+
+
+    CSV.write(save_dir*"results.csv", results)
     foreach(zip(fns, figs)) do (fn, fig)
         CairoMakie.save(fn, fig)
     end

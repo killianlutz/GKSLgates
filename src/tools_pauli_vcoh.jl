@@ -43,7 +43,7 @@ function sphereplot!(axis; radius::Real=1)
 
     # mesh!(axis, S, color=:purple, transparency=true, alpha=1/10)
     wireframe!(axis, S, color=:purple, transparency=true, alpha=1/20)
-    arrows!(axis, zero.(basis), basis, arrowsize=1/10, alpha=2/10, linewidth=0.02)
+    arrows3d!(axis, zero.(basis), basis, shaftradius=0.01, tipradius=0.05, tiplength=0.1, alpha=0.8)
     return axis
 end
 
@@ -155,7 +155,7 @@ function showbloch_orbits(bloch_vector_orbits::AbstractVecOrMat{V}, target_state
     origin = [zero(Point3)]
     foreach(axs) do axis
         keep = 1:10:length(control)
-        arrows!(axis, origin, view(control, keep), color=keep, arrowsize=1/25, linewidth=0.02, colormap=:grays)
+        arrows3d!(axis, origin, view(control, keep), color=keep, shaftradius=0.01, tipradius=0.035, tiplength=0.05, colormap=:grays)
     end
 
     return fig, axs

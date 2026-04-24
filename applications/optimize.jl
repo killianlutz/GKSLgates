@@ -1,7 +1,7 @@
 using Pkg
 Pkg.activate("./")
 # written in Julia 1.9.4
-include("../src/modules/QGateDescent.jl")
+include("../src/QGateDescent.jl")
 using .QGateDescent
 using Random: default_rng, seed!
 using JLD2: @save
@@ -81,7 +81,7 @@ begin
     verifybounds(var, sap, bounds)
     rescale!(var)
     for _ in 1:10
-        sap = gradient_descent!(var, qs; tolerances, keep_optimizing=true, verbose=true);
+       global sap = gradient_descent!(var, qs; tolerances, keep_optimizing=true, verbose=true);
         Tη[end] = var.T
     end
     verifybounds(var, sap, bounds)

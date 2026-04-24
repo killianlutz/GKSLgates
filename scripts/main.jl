@@ -2,7 +2,7 @@ using Pkg
 Pkg.activate("./")
 
 # written in Julia 1.9.4
-include("../src/modules/QGateDescent.jl")
+include("../src/QGateDescent.jl")
 using .QGateDescent
 
 using Random: default_rng, seed!
@@ -58,5 +58,4 @@ fig = showbloch_orbits(var, sap, qs, ϱ0; with_ctrl=true)
 
 
 #### SAVE RESULTS FOR LATER USE
-using JLD2
-save((var, sap), "./sims/results.jld2")
+qgd.save((var, sap), "./scripts/sims/results.jld2")

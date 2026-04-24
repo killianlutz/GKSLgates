@@ -8,7 +8,7 @@ begin
 end;
 
 begin
-    control_guess = [0.01*ones(F, 2*(dim - 1)) for _ in 1:200]
+    control_guess = [0.01*ones(F, 2*(dim - 1)) for _ in 1:100]
     time_horizon_guess = 1.0
     control_bounds = (-1.0, 1.0)    
 

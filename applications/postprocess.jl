@@ -1,6 +1,6 @@
 using Pkg
 Pkg.activate("./")
-include("../src/modules/QGateDescent.jl")
+include("../src/QGateDescent.jl")
 using .QGateDescent
 using Random: default_rng, seed!
 import .QGateDescent as qgd
@@ -18,7 +18,7 @@ begin
 
     rng = default_rng()
     seed!(rng, 4837908543)
-    save_dir = "./scripts/applications/sims/"*model*"/"
+    save_dir = "./applications/sims/"*model*"/"
     filename = save_dir*model*".jld2"
     @load filename var sap qs Tη
 
@@ -41,7 +41,7 @@ fig = showbloch_orbits(var, sap, ϱ0; with_ctrl=false, single_figure=true)
 # uncontrolled
 fig = showbloch_orbits(qs, ϱ0; tspan=(0.0, 5.0))
 # both
-fig = qgd.showbloch_orbits(var, sap, qs, ϱ0; with_ctrl=false)
+fig = qgd.showbloch_orbits(var, sap, qs, ϱ0; with_ctrl=true)
 
 ### quantitative validation
 R0 = first(state(sap))
