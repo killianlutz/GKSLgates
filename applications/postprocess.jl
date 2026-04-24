@@ -8,7 +8,7 @@ import .QGateDescent as qgd
 using JLD2: @load
 
 begin
-    save_dir = "./scripts/applications/sims/"
+    save_dir = "./applications/sims/"
     models = readdir(save_dir)[begin+1:end]
     models = Dict(i => model for (i, model) in enumerate(models))
 end

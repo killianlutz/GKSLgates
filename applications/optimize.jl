@@ -8,7 +8,7 @@ using JLD2: @save
 import .QGateDescent as qgd
 
 include("./models/qudits.jl")
-save_dir = "./scripts/applications/sims/"
+save_dir = "./applications/sims/"
 
 # qubit
 dim = 2

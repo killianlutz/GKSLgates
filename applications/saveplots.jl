@@ -10,7 +10,7 @@ using CairoMakie
 CairoMakie.activate!()
 
 begin
-    save_dir = "./scripts/applications/sims/"
+    save_dir = "./applications/sims/"
     models = readdir(save_dir)[begin+1:end]
 end
 
