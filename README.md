@@ -21,12 +21,12 @@ julia --project=. -e "using Pkg; Pkg.instantiate()"
 
 - Perform the necessary calculations, stored in the `./applications/sims` directory, by running
 ```
-julia --project=. appplications/optimize.jl
+julia --project=. applications/optimize.jl
 ```
 
 - Generate the figures, stored in the `./applications/sims` directory, by running
 ```
-julia --project=. appplications/saveplots.jl
+julia --project=. applications/saveplots.jl
 ```
 
 ## Troubleshooting
