@@ -120,15 +120,14 @@ function showbloch_orbits(bloch_vector_orbits::AbstractVecOrMat{T}; fig=Figure()
         orbits = vec(bloch_vector_orbits)
         colors = cgrad(:viridis, length(orbits); categorical=true)
         foreach(orbits, colors) do orbit, color  
-            lines!(first(axs), orbit; color, linewidth=5, transparency=true)
-            scatter!(first(axs), first(orbit), marker=:circle, color=:black, markersize=10)
+            lines!(first(axs), orbit; color, linewidth=5, transparency=false)
+            scatter!(first(axs), first(orbit), marker=:circle, color=:black, markersize=20)
         end
     else
         foreach(axs, bloch_vector_orbits) do axis, orbit
             scatter!(axis, orbit; color=1:length(orbit), colormap=:viridis, markersize=10)
         end
     end
-    # resize_to_layout!(fig)
 
     return fig, axs
 end
@@ -138,11 +137,11 @@ function showbloch_orbits(bloch_vector_orbits::AbstractVecOrMat{V}, target_state
     if single_figure
         colors = cgrad(:viridis, length(bloch_vector_orbits); categorical=true)
         foreach(target_states, colors) do orbits_endpoints, color
-            scatter!(first(axs), last(orbits_endpoints), marker=:cross, color=color, markersize=15)
+            scatter!(first(axs), last(orbits_endpoints), marker=:cross, color=color, markersize=25)
         end
     else
         foreach(axs, target_states) do axis, orbits_endpoints
-            scatter!(axis, last(orbits_endpoints), marker=:cross, color=:red, markersize=15)
+            scatter!(axis, last(orbits_endpoints), marker=:cross, color=:red, markersize=20)
         end
     end
 
@@ -154,7 +153,7 @@ function showbloch_orbits(bloch_vector_orbits::AbstractVecOrMat{V}, target_state
     
     origin = [zero(Point3)]
     foreach(axs) do axis
-        keep = 1:10:length(control)
+        keep = 1:5:length(control)
         arrows3d!(axis, origin, view(control, keep), color=keep, shaftradius=0.01, tipradius=0.035, tiplength=0.05, colormap=:grays)
     end
 

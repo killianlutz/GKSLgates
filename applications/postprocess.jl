@@ -14,7 +14,7 @@ begin
 end
 
 begin
-    model = models[1]
+    model = models[2]
 
     rng = default_rng()
     seed!(rng, 4837908543)

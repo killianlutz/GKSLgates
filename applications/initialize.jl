@@ -8,15 +8,15 @@ begin
 end;
 
 begin
-    control_guess = [0.01*ones(F, 2*(dim - 1)) for _ in 1:100]
+    control_guess = [0.1*ones(F, 2*(dim - 1)) for _ in 1:100]
     time_horizon_guess = 1.0
     control_bounds = (-1.0, 1.0)    
 
     ubounds = control_bounds
     Q = zeros(C, dim, dim)
     nt = length(control_guess)
-    ngrad = 50_000
-    maxStepSizeGR = 100.0
+    ngrad = 20_000
+    maxStepSizeGR = 50.0
     maxIterGR = 200
     abstol = convert(F, 1e-6)
     reltol = convert(F, 1e-6)

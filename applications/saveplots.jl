@@ -41,12 +41,12 @@ foreach(models) do model
 
     # compare estimates to numerical results
     if qs.dim == 2
-        nexp_Hgen = nothing
+        nexp_Hgen = nothing # use generic qubit case
     else
         nexp_Hgen = 3 # the gate we chose is known to be H_3-generated
     end
     bounds = aprioribounds!(var, qs; nexp_Hgen);
-    J_val, T_val = verifybounds(var, sap, bounds); # validate with independent solver
+    J_val, T_val = verifybounds(var, sap, bounds; dtmax=1e-5*var.T); # validate with independent solver
     results = DataFrame(
         J_upper=bounds.Jup, 
         J_validated=J_val, 

@@ -21,14 +21,14 @@ Assuming Julia version `1.9.4` is correctly [installed](https://docs.julialang.o
 julia --project=. -e "using Pkg; Pkg.instantiate()"
 ```
 
-- Perform the necessary calculations, stored in the `./applications/sims` directory, by running
-```
-julia --project=. applications/optimize.jl
-```
-
 - Generate the figures, stored in the `./applications/sims` directory, by running
 ```
 julia --project=. applications/saveplots.jl
+```
+
+- Alternatively, you may choose to perform the necessary calculations for yourself before generating the figures. To do so, begin with running
+```
+julia --project=. applications/optimize.jl
 ```
 
 ## Troubleshooting
